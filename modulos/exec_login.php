@@ -28,10 +28,10 @@ if(mysqli_num_rows($result)>0){
        $_SESSION['nivel'] = $nivel;
       
 	  if($nivel == 0){
-      header("location: /projeto_estagio/painel.php");
+      header("location: /projeto_site/painel.php");
     } else{
 			echo $nivel;
-           header("Location: /projeto_estagio/admin/painel.php");
+           header("Location: /projeto_site/admin/painel.php");//Painel sendo chamado
     }
 
 

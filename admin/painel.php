@@ -1,9 +1,19 @@
 <?php
+class Painel{
+	
+	function inicializarSecao(){
 session_start();
 if(!isset($_SESSION['email']) || empty($_SESSION['email']) && $_SESSION['nivel']> 0){
   header("location: ../login.php");
   exit;
 
+		}
+	}
+	
+	function finalizarSecao(){
+		
+	}
+	
 }
 ?>
 <!--Refazer HTML de adiministrador-->
