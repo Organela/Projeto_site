@@ -1,8 +1,7 @@
-﻿ <?php include 'modulos/exec_login.php'; ?>
-
+﻿ <?php include '../Controller/ControladorLogin.php';?>
 <!doctype html>
 <html lang="en">
- <?php include 'modulos/head.php'; ?>
+ <?php include '../head.php'; ?><!-- Atenção ao direcionamento-->
   <body>
   <div class="container h-100">
   <div class="row h-100 justify-content-center align-items-center">
@@ -43,11 +42,11 @@
       </form>
     </div>
     <div class="modal-footer mx-5 pt-3 mb-1">
-    <p class="font-small grey-text d-flex justify-content-end">Não é membro? <a href="registro.php" class="blue-text ml-1">Cadastre-se</a></p>
+        <p class="font-small grey-text d-flex justify-content-end">Não é membro? <a href="View/RegistroInterface.php" class="blue-text ml-1">Cadastre-se</a></p>
 </div>
   </div>
 </div>
 </div>
- <?php include 'modulos/scripts_rodape.php'; ?>
+ <?php include '../scripts_rodape.php'; ?><!-- Atenção ao direcionamento-->
   </body>
 </html>

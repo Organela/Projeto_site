@@ -1,8 +1,8 @@
- <?php include 'modulos/exec_registro.php'; ?>
+ <?php include 'Model/ControladorRegistro'; ?>
 
 <!doctype html>
 <html lang="en">
- <?php include 'modulos/head.php'; ?>
+ <?php include 'head.php'; ?>
   <body>
     <div class="container h-100">
   <div class="row h-100 justify-content-center align-items-center">
@@ -80,6 +80,6 @@
     " data-bind="btnregistrar" data-callback="submitForm"></div>
     </div>
   </div>
- <?php include 'modulos/scripts_rodape.php'; ?>
+ <?php include 'scripts_rodape.php'; ?>
 </body>
 </html>
