@@ -7,9 +7,9 @@
             <file>file:/C:/xampp/htdocs/projeto_site/View/RegistroInterface.php</file>
             <file>file:/C:/xampp/htdocs/projeto_site/Model/Registro.php</file>
             <file>file:/C:/xampp/htdocs/projeto_site/Controller/ControladorLogin.php</file>
-            <file>file:/C:/xampp/htdocs/projeto_site/Controller/Teste.php</file>
+            <file>file:/C:/xampp/htdocs/projeto_site/Controller/ControladorRegistro.php</file>
             <file>file:/C:/xampp/htdocs/projeto_site/View/LoginInterface.php</file>
-            <file>file:/C:/xampp/htdocs/projeto_site/head.php</file>
+            <file>file:/C:/xampp/htdocs/projeto_site/Banco/Conexao.php</file>
         </group>
     </open-files>
 </project-private>

@@ -1,13 +1,15 @@
 <?php
-
+require '../Banco/Conexao.php';
 
 class ControladorLogin{
 
-Function execLogin(){    
+public static Function execLogin(){  
+   
     if($_SERVER['REQUEST_METHOD'] === 'POST'){
-        require_once '../Login.php';
-        $l = new Login(htmlspecialchars($_POST["login"],$_POST["senha"]) );
-        $result = PDO::query("SELECT * FROM usuario WHERE email='".$l.getLogin."'"); 
+        require_once '../Model/Login.php';
+        $l = new Login(htmlspecialchars($_POST["login"]),htmlspecialchars( $_POST["senha"]));
+        $result = new Conexao();
+        $result->getBanco()->prepare("SELECT * FROM usuario WHERE email='".$l->getLogin."'"); 
         
         if(!empty($l.getLogin())&&!empty($l.getSenha)){//Verifica se  os campos estão preenchidos
             if(mysqli_num_rows($result)>0){//Verifica se E-mail foi cadastrado
@@ -32,14 +34,14 @@ Function execLogin(){
 Function verificarAssinante(Login $l,$hash){    
             
         if(password_verify($l.getSenha(),$hash)){
-                
-                $procura = PDO::query("SELECT cpf,nome,nivel FROM usuario WHERE email='".$l.getLogin()."'");
+                $procura = new Conexao();
+                $procura->prepare("SELECT cpf,nome,nivel FROM usuario WHERE email='".$l->getLogin()."'");
                 $row2 = mysqli_fetch_assoc($procura);
                 $id = $row2["cpf"];
                 $nome = $row2["nome"];
                 $nivel = $row2["nivel"];
-                /*$alerta= "Validado com sucesso";
-                echo $nivel;*/
+                $alerta= "Validado com sucesso";
+                
                 session_start();
                 $_SESSION['cpf'] = $id;
                 $_SESSION['email'] = $l.getLogin();
@@ -59,7 +61,7 @@ Function verificarAssinante(Login $l,$hash){
             else{
                   $erro= "Senha Incorreta";
                 }
-                /* mysqli_close();*/
+                 mysqli_close();
 
         }           
 

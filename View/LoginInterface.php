@@ -1,4 +1,4 @@
-﻿ <?php include '../Controller/ControladorLogin.php';?>
+﻿ <?php include '../Controller/ControladorLogin.php'; $c = new ControladorLogin(); $c->execLogin();?><!--Acessando arquivo ControladorLogin-->
 <!doctype html>
 <html lang="en">
  <?php include '../head.php'; ?><!-- Atenção ao direcionamento-->
