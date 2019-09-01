@@ -1,41 +1,50 @@
 <?php
-require '../Banco/Conexao.php';
-
+require_once '../Banco/Conexao.php';
+require_once 'ControladorUsuario.php';
 class ControladorLogin{
 
 public static Function execLogin(){  
    
     if($_SERVER['REQUEST_METHOD'] === 'POST'){
-        require_once '../Model/Login.php';
-        $l = new Login(htmlspecialchars($_POST["login"]),htmlspecialchars( $_POST["senha"]));
-        $result = new Conexao();
-        $result->getBanco()->prepare("SELECT * FROM usuario WHERE email='".$l->getLogin."'"); 
         
-        if(!empty($l.getLogin())&&!empty($l.getSenha)){//Verifica se  os campos estão preenchidos
-            if(mysqli_num_rows($result)>0){//Verifica se E-mail foi cadastrado
-                $row = mysqli_fetch_array($result, MYSQLI_BOTH);
-                $hash = $row["senha"];
-                 echo password_verify($l.getSenha(), $hash);
-                verificarAssinante($l, $result,$row);
-         }
+       if(isset($_POST["email"]) && isset($_POST["senha"])){//Verifica se  os campos estão preenchidos -> l.getLogin e l.getSenha() nao funciona?
+           
+            if(!empty($_POST["email"]) && !empty($_POST["senha"])){
+                
+                
+                $user = new ControladorUsuario();
+                
+                if($user->procura($_POST["email"])!= null){
+                   
+                   /* $row = mysqli_fetch_array($result, MYSQLI_BOTH);*/
+                   /* $row = $link->getBanco()->fetch(PDO::FETCH_BOTH);
+                    var_dump($row);*/
+                    $hash = $row["senha"];
+                    echo password_verify($_POST["senha"], $hash);
+                    $this->verificarAssinante();
+                }
+                else {
+                    $erro = "E-mail não cadastrado";
+                }
+                
+            }
             else{
-                $erro= "Email não cadastrado";
-}
+                $erro= "Preencha todos os campos";
+            }
 			
         
    	}
-        else{
-             $erro= "Preencha todos os campos";
-        }
+        
     
 
         }
+        $result = null;//Fechando conexeção
 }
-Function verificarAssinante(Login $l,$hash){    
+Function verificarAssinante(){    
             
         if(password_verify($l.getSenha(),$hash)){
-                $procura = new Conexao();
-                $procura->prepare("SELECT cpf,nome,nivel FROM usuario WHERE email='".$l->getLogin()."'");
+                
+                $procura = $link->getBanco()->prepare("SELECT cpf,nome,nivel FROM usuario WHERE email='".$l->getEmail()."'");
                 $row2 = mysqli_fetch_assoc($procura);
                 $id = $row2["cpf"];
                 $nome = $row2["nome"];
@@ -44,7 +53,7 @@ Function verificarAssinante(Login $l,$hash){
                 
                 session_start();
                 $_SESSION['cpf'] = $id;
-                $_SESSION['email'] = $l.getLogin();
+                $_SESSION['email'] = $email;
                 $_SESSION['nome'] = $nome;
                 $_SESSION['nivel'] = $nivel;
       
@@ -61,9 +70,9 @@ Function verificarAssinante(Login $l,$hash){
             else{
                   $erro= "Senha Incorreta";
                 }
-                 mysqli_close();
-
+                 
+                $procura = null;//Fechanco conexao
         }           
+}
 
-
- }
+ 

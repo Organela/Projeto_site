@@ -25,7 +25,7 @@
 
   <div class="md-form form-lg">
     <i class="fa fa-envelope prefix"></i>
-    <input type="text" id="login" name="login" class="form-control form-control-lg" required>
+    <input type="text" id="email" name="email" class="form-control form-control-lg" required>
     <label for="login">Email</label>
   </div>
   <div class="md-form form-lg">

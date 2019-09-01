@@ -10,11 +10,14 @@ const db = "site";
         return $this->banco;
     }
 
-    function Conexao(){
-    try{
+    function __construct(){
+    try{    
             $this -> banco = new PDO("mysql:host=".self::host.";
             dbname=".self::db."",
-            self::user, self::password);
+            self::user, self::password, array(
+            PDO::ATTR_PERSISTENT => true
+            
+                    ));
                 
     } catch (Exception $e) {
         print "Erro: ".$e->getMessage();
