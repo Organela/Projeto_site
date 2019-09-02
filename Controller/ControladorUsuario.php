@@ -14,10 +14,11 @@ Class ControladorUsuario{
 function  procura($email){
         
         $query = $this->banco->prepare("SELECT * FROM usuario WHERE email= ?");
+        $query->bindParam(1,$email);
         //$query = $this->banco->prepare("SELECT * FROM usuario");
         //var_dump($query);
         //$query->execute(array(':email' => $email));
-        $query->execute(array($email));
+        $query->execute();
         //var_dump( $query->execute());
         var_dump($query->fetch());/*Não para de retornar falso*/
              
